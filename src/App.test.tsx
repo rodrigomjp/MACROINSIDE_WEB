@@ -1,9 +1,10 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import React from "react";
+import { render, screen, within } from "@testing-library/react";
+import App from "./App";
 
-test('renders learn react link', () => {
+test("renderiza el logo de MacroInside en el header", () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  const header = screen.getByRole("banner");
+  const logo = within(header).getByAltText(/MacroInside/i);
+  expect(logo).toBeInTheDocument();
 });
