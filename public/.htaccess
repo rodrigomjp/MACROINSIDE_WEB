@@ -1,0 +1,20 @@
+# SPA: todas las rutas deben servir index.html para que React Router funcione
+# (evita 404 al abrir /privacidad, /contacto, etc. directamente)
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # No reescribir peticiones a archivos o carpetas que existan
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  # Todo lo demás → index.html
+  RewriteRule ^ index.html [L]
+</IfModule>
+
+# Por si mod_rewrite no está disponible (fallback con ErrorDocument)
+<IfModule mod_negotiation.c>
+  Options -MultiViews
+</IfModule>
+
+
